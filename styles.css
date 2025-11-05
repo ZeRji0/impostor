@@ -1,0 +1,87 @@
+/* Estilo móvil, oscuro por defecto, con tipografía del sistema */
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #0d0e10;
+  color: #e7e7ea;
+  font-family: -apple-system, system-ui, Segoe UI, Roboto, Arial;
+  line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
+}
+
+main { width: min(720px, 92vw); margin: 0 auto; padding: max(16px, env(safe-area-inset-top)) 0 32px; }
+.view { display:none; animation: fade .2s ease-out; }
+.view.active { display:block; }
+
+.title {
+  text-align:center;
+  font-size: clamp(1.6rem, 5vw, 2rem);
+  margin: 8px 0 12px;
+}
+
+.center { text-align:center; }
+.muted { color: #a1a1aa; }
+.small { font-size: .95rem; }
+.big { font-size: 1.25rem; }
+
+.card {
+  background: #14151a;
+  border: 1px solid #22232b;
+  border-radius: 14px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.row {
+  display:flex; align-items:center; justify-content:space-between; gap: 12px;
+}
+.row input { max-width: 120px; }
+
+label { display:block; margin: 8px 0; }
+input, select, textarea {
+  width:100%;
+  background:#0f1014;
+  color:#e7e7ea;
+  border:1px solid #2a2b34;
+  border-radius:12px;
+  padding:12px 14px;
+  outline:none;
+}
+textarea { resize:vertical; min-height: 90px; }
+
+.tabs { display:flex; gap:6px; margin:.5rem 0 0.25rem; }
+.tab {
+  background:#101116; color:#cfcfd6; border:1px solid #2a2b34;
+  padding:.55rem .8rem; border-radius:999px; cursor:pointer; flex:1;
+}
+.tab.active { background:#1e2030; border-color:#3a3c4b; color:#fff; }
+
+.panel { display:none; }
+.panel.active { display:block; }
+
+.stack > * { margin:.4rem 0; }
+
+.actions { display:flex; gap:10px; margin-top: 12px; }
+.actions .btn { flex:1; }
+
+.btn {
+  border:1px solid #2a2b34; background:#0f1014; color:#fff;
+  padding:12px 16px; border-radius:12px; font-weight:600; cursor:pointer;
+}
+.btn.primary { background:#3a66ff; border-color:#3a66ff; }
+.btn:active { transform: translateY(1px); }
+
+.reveal-box {
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  background: #0f1118;
+  border: 1px dashed #3a3c4b;
+  border-radius: 12px;
+  padding: 22px 14px;
+  min-height: 86px;
+  display:flex; align-items:center; justify-content:center;
+  user-select:none;
+}
+
+@keyframes fade { from { opacity:0; transform: translateY(6px);} to { opacity:1; transform:none; } }

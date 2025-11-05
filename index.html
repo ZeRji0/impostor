@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Impostor — Juego de palabras</title>
+  <meta name="theme-color" content="#111111">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="app">
+    <!-- PANTALLA 1: INICIO -->
+    <section class="view active" id="view-home" role="region" aria-labelledby="home-title">
+      <h1 id="home-title" class="title">IMPOSTOR 🔍</h1>
+      <p class="muted center">Juego de palabras para un único móvil</p>
+      <div class="actions">
+        <button class="btn primary" id="btn-empezar">Empezar</button>
+      </div>
+    </section>
+
+    <!-- PANTALLA 2: CONFIGURACIÓN -->
+    <section class="view" id="view-setup" role="region" aria-labelledby="setup-title">
+      <h2 id="setup-title" class="title">Configuración</h2>
+
+      <div class="card">
+        <label class="row">
+          <span>Número de jugadores</span>
+          <input id="num-jugadores" type="number" min="3" max="20" value="5" inputmode="numeric" pattern="[0-9]*">
+        </label>
+        <details>
+          <summary>Introducir nombres (opcional)</summary>
+          <div id="nombres-container" class="stack"></div>
+          <button class="btn" id="btn-autorelleno" type="button">Autorrellenar nombres</button>
+        </details>
+      </div>
+
+      <div class="card">
+        <h3>Palabras de la ronda</h3>
+        <div class="tabs" role="tablist">
+          <button class="tab active" role="tab" aria-selected="true" id="tab-personalizadas" type="button">Mis palabras</button>
+          <button class="tab" role="tab" aria-selected="false" id="tab-aleatorias" type="button">Aleatorias (ES)</button>
+        </div>
+
+        <div id="panel-personalizadas" class="panel active" role="tabpanel" aria-labelledby="tab-personalizadas">
+          <label for="lista-palabras">Escribe palabras separadas por comas:</label>
+          <textarea id="lista-palabras" rows="4" placeholder="playa, profesor, internet, pizza"></textarea>
+          <p class="muted small">Se barajarán y se elegirá una al comenzar la ronda.</p>
+        </div>
+
+        <div id="panel-aleatorias" class="panel" role="tabpanel" aria-labelledby="tab-aleatorias">
+          <p class="muted small">Usa Internet para obtener una palabra **real** aleatoria en español cada ronda.</p>
+          <label for="categoria">Categoría (opcional, solo informativa):</label>
+          <select id="categoria">
+            <option value="libre">Libre</option>
+          </select>
+          <p class="muted small">Si no hay conexión, verás un aviso y podrás escribir tus palabras.</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="btn-prev-home" type="button">← Atrás</button>
+        <button class="btn primary" id="btn-comenzar-ronda" type="button">Comenzar ronda</button>
+      </div>
+    </section>
+
+    <!-- PANTALLA 3: REPARTO -->
+    <section class="view" id="view-reveal" role="region" aria-live="polite">
+      <h2 class="title">Ronda</h2>
+      <div class="card center">
+        <p id="reveal-etiqueta" class="muted">Jugador 1</p>
+        <div id="reveal-contenido" class="reveal-box">Pulsa “Siguiente” para ver tu rol</div>
+        <p id="reveal-pista" class="muted small">Toca “Siguiente” y pasa el móvil.</p>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btn-ocultar" type="button">Ocultar</button>
+        <button class="btn primary" id="btn-siguiente" type="button">Siguiente</button>
+      </div>
+      <p class="muted center small">Evita que el resto mire la pantalla 😉</p>
+    </section>
+
+    <!-- PANTALLA 4: ¡JUGAD! (final de reparto) -->
+    <section class="view" id="view-jugad" role="region">
+      <h2 class="title">🎮 ¡Jugad ya!</h2>
+      <div class="card center">
+        <p class="muted">Todos han visto su rol/palabra.</p>
+        <p class="muted">Cuando terminéis la ronda, pulsa abajo para una nueva palabra y un nuevo impostor.</p>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btn-volver-config" type="button">Cambiar configuración</button>
+        <button class="btn primary" id="btn-nueva-partida" type="button">Nueva partida</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
