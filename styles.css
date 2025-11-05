@@ -1,0 +1,86 @@
+/* Estilos básicos, responsive, sin frameworks */
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #666666;
+  --card: #f5f5f5;
+  --accent: #0a84ff;
+}
+
+:root.dark {
+  --bg: #0b0b0c;
+  --fg: #ededed;
+  --muted: #a1a1aa;
+  --card: #161618;
+  --accent: #3b82f6;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Noto Sans', 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.55;
+}
+
+.container {
+  width: min(980px, 92%);
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+header h1 { font-size: clamp(1.2rem, 2.5vw, 1.8rem); margin: 0; }
+nav a {
+  text-decoration: none;
+  margin-left: 1rem;
+  padding: .4rem .6rem;
+  border-radius: .5rem;
+  color: var(--fg);
+  border: 1px solid transparent;
+}
+nav a:hover { border-color: var(--muted); }
+
+.card {
+  background: var(--card);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: .8rem;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+button {
+  border: 1px solid var(--muted);
+  background: transparent;
+  color: var(--fg);
+  padding: .6rem .9rem;
+  border-radius: .6rem;
+  cursor: pointer;
+}
+button:hover { border-color: var(--fg); }
+
+label { display: block; margin: .6rem 0; }
+input, textarea {
+  width: 100%;
+  padding: .6rem .7rem;
+  border-radius: .6rem;
+  border: 1px solid var(--muted);
+  background: transparent;
+  color: var(--fg);
+}
+
+footer { padding-bottom: 2rem; }
+
+.muted { color: var(--muted); }
+.small { font-size: .9rem; }
+
+/* Preferencia inicial según sistema */
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; }
+}

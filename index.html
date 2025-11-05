@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Web Simple</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Hola 👋 — Bienvenido a mi web</h1>
+    <nav>
+      <a href="#about">Sobre mí</a>
+      <a href="#features">Funciones</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="hero" class="card">
+      <h2>100% gratuita y estática</h2>
+      <p>Esta web está hecha con HTML, CSS y JavaScript puro. Puedes desplegarla gratis en GitHub Pages, Netlify o Vercel.</p>
+      <button id="cta">Haz clic para probar una función</button>
+      <p id="cta-result" class="muted"></p>
+    </section>
+
+    <section id="about" class="card">
+      <h2>Sobre mí</h2>
+      <p>Edita este texto en <code>index.html</code> para contar quién eres y qué haces.</p>
+    </section>
+
+    <section id="features" class="card">
+      <h2>Funciones de ejemplo</h2>
+      <ul>
+        <li>Modo oscuro con un clic</li>
+        <li>Almacenamiento local (recuerda tu preferencia de tema)</li>
+        <li>Formulario de contacto funcional con Formspree o mailto:</li>
+      </ul>
+      <button id="theme-toggle" aria-label="Cambiar tema">Cambiar tema 🌗</button>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contacto</h2>
+      <!-- Opción A: usar Formspree (gratis con registro). Reemplaza YOUR_FORM_ID -->
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>Nombre <input name="name" required></label>
+        <label>Email <input type="email" name="email" required></label>
+        <label>Mensaje <textarea name="message" rows="5" required></textarea></label>
+        <button type="submit">Enviar</button>
+        <p class="muted small">Si no quieres Formspree, cambia el atributo <code>action</code> por <code>mailto:tu@correo.com</code>.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="container muted small">
+    <p>Hecho con ❤️ — Edita libremente.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
