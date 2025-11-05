@@ -1,0 +1,23 @@
+body{background:#0d0e10;color:#e7e7ea;font-family:-apple-system,system-ui,Segoe UI,Roboto,Arial;margin:0;padding:0}
+main{width:min(720px,92vw);margin:auto;padding:20px}
+.view{display:none} .view.active{display:block}
+.title{text-align:center;font-size:1.8rem;margin:.5em 0}
+.card{background:#14151a;border:1px solid #22232b;border-radius:16px;padding:16px;margin:12px 0}
+.btn{background:#3a66ff;color:#fff;border:none;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer;width:100%;margin:4px 0}
+.btn.primary{background:#3a66ff}
+.reveal-box{font-size:1.5rem;background:#0f1118;border:1px dashed #3a3c4b;border-radius:14px;padding:22px;min-height:90px;text-align:center}
+.hidden{color:#7c7c85}
+.center{text-align:center}.muted{color:#aaa}.small{font-size:.9rem}
+.actions{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+.actions .btn{flex:1}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.stack>*{margin:.4rem 0}
+.tabs{display:flex;gap:6px;margin:.5rem 0}
+.tab{background:#101116;color:#cfcfd6;border:1px solid #2a2b34;padding:.55rem .8rem;border-radius:999px;cursor:pointer;flex:1;text-align:center}
+.tab.active{background:#2a3a8f;border-color:#3a66ff;color:#fff}
+.panel{display:none}.panel.active{display:block}
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-content{background:#14151a;border:1px solid #2a2b34;border-radius:16px;padding:16px;max-width:520px;width:100%}
+/* Toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1f2937;color:#fff;border:1px solid #334155;padding:10px 14px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.3)}

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>IMPOSTOR — Cerveza’s Version · Definitive Edition</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="app">
+    <!-- HOME -->
+    <section class="view active" id="view-home">
+      <h1 class="title">IMPOSTOR — Cerveza’s Version 🍺</h1>
+      <p class="muted center">Definitive Edition — modo competitivo y tabla de puntuaciones</p>
+      <div class="actions">
+        <button class="btn primary" id="btn-empezar">Empezar</button>
+      </div>
+
+      <div id="home-scores" class="card" style="display:none">
+        <h3>🏆 Tabla de puntuaciones</h3>
+        <div id="scores-table"></div>
+        <div class="actions">
+          <button class="btn" id="btn-copy-scores">📋 Copiar resultados</button>
+          <button class="btn" id="btn-reset-scores">🧹 Reiniciar puntuaciones</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETUP -->
+    <section class="view" id="view-setup">
+      <h2 class="title">Configuración</h2>
+      <div class="card">
+        <label class="row"><span>Número de jugadores</span><input id="num-jugadores" type="number" min="3" max="20" value="5"></label>
+        <details>
+          <summary>Nombres (opcional)</summary>
+          <div id="nombres-container" class="stack"></div>
+          <button class="btn" id="btn-autorelleno" type="button">Autorrellenar</button>
+        </details>
+      </div>
+
+      <div class="card">
+        <h3>Modo de palabras</h3>
+        <div class="tabs">
+          <button class="tab active" data-mode="mis">Mis palabras</button>
+          <button class="tab" data-mode="aleatorias">Aleatorias (ES)</button>
+          <button class="tab" data-mode="coop">Cooperativo</button>
+        </div>
+
+        <div id="panel-mis" class="panel active">
+          <label>Palabras separadas por comas</label>
+          <textarea id="lista-palabras" rows="4" placeholder="playa, profesor, internet, pizza"></textarea>
+        </div>
+
+        <div id="panel-aleatorias" class="panel">
+          <p class="muted small">Obtiene una palabra real en español desde Internet. Si fallan las APIs o no hay Internet, usa el diccionario local.</p>
+        </div>
+
+        <div id="panel-coop" class="panel">
+          <p class="muted small">Cada jugador aportará palabras (una por línea). Los impostores NO recibirán palabras que hayan aportado ellos. Las palabras se consumen una vez.</p>
+          <div class="actions">
+            <button class="btn" id="btn-empezar-coop" type="button">Comenzar aportes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Impostores</h3>
+        <label><input type="radio" name="imp-mode" id="imp-fixed" checked> Número fijo</label>
+        <input id="imp-count" type="number" min="1" value="1" style="max-width:100px;">
+        <label><input type="radio" name="imp-mode" id="imp-random"> Aleatorio simple (1 a N impostores)</label>
+        <p class="muted small" id="imp-info"></p>
+      </div>
+
+      <div class="card">
+        <label class="row">
+          <span>⚔️ Activar modo competitivo</span>
+          <input type="checkbox" id="chk-competitivo">
+        </label>
+        <p class="muted small">Si está activo, al final de cada ronda indicarás si se descubrió al impostor. Se suman puntos automáticamente.</p>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="btn-prev-home">← Atrás</button>
+        <button class="btn primary" id="btn-comenzar">Comenzar ronda</button>
+      </div>
+    </section>
+
+    <!-- COOP INPUT -->
+    <section class="view" id="view-coop">
+      <h2 class="title">Cooperativo — Aportes</h2>
+      <div class="card">
+        <p id="coop-etiqueta" class="muted">Jugador 1: escribe tus palabras (una por línea)</p>
+        <textarea id="coop-text" rows="6" placeholder="Escribe palabras, una por línea…"></textarea>
+        <div class="actions">
+          <button class="btn" id="btn-coop-saltar">Saltar</button>
+          <button class="btn primary" id="btn-coop-listo">He terminado</button>
+        </div>
+      </div>
+      <p id="coop-progreso" class="muted small center">0/0 jugadores han aportado</p>
+    </section>
+
+    <!-- REVEAL -->
+    <section class="view" id="view-reveal">
+      <h2 class="title">Ronda</h2>
+      <div class="card center">
+        <p id="prog" class="muted small"></p>
+        <p id="etiqueta" class="muted"></p>
+        <div id="contenido" class="reveal-box hidden">— Oculto —</div>
+        <p id="pista" class="muted small">Pulsa “Mostrar” para ver tu rol.</p>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btn-toggle">👁 Mostrar</button>
+        <button class="btn primary" id="btn-siguiente">Siguiente</button>
+      </div>
+    </section>
+
+    <!-- JUGAD -->
+    <section class="view" id="view-jugad">
+      <h2 class="title">🎮 ¡Jugad ya!</h2>
+      <div class="card center">
+        <p class="muted">Todos han visto su rol. ¡Comienza la ronda!</p>
+        <p class="muted small" id="jugad-restantes"></p>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btn-evaluar" style="display:none">Evaluar resultado (competitivo)</button>
+        <button class="btn primary" id="btn-nueva">Nueva ronda</button>
+        <button class="btn" id="btn-menu">Volver al menú principal</button>
+      </div>
+    </section>
+
+    <!-- MODAL COMPETITIVO -->
+    <div id="modal" class="modal" style="display:none">
+      <div class="modal-content">
+        <h3>¿Se descubrió al impostor?</h3>
+        <p class="muted small">Elige el resultado de la ronda para asignar puntos.</p>
+        <div class="actions">
+          <button class="btn" id="btn-ganan-ciudadanos">✅ Sí, descubierto</button>
+          <button class="btn" id="btn-ganan-impostores">❌ No, ganó el impostor</button>
+        </div>
+        <div class="actions">
+          <button class="btn" id="btn-cerrar-modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
